@@ -4,24 +4,36 @@ import {Greeter} from './Greeter'
 let c = new JSONConverter<Greeter>();
 let src = new Greeter('aaa');
 src.inner.field = "h";
+
+DocmentWrite("--シリアライズ対象--");
 console.log(src);
-console.log(src.greet());
-console.log(src.inner.method());
+DocmentWrite(src.greet());
+DocmentWrite(src.inner.method());
 
-console.log("--シリアライズ対象--");
+DocmentWrite("--シリアライズ--");
 let jsonString = c.serialize(src);
-console.log(jsonString);
+DocmentWrite(jsonString);
 
-console.log("--デシリアライズ--");
+DocmentWrite("--デシリアライズ--");
 let g = c.deserialize(jsonString, new Greeter(''));
 console.log(g);
-console.log(g.greet());
-console.log(g.inner.method());
+DocmentWrite(g.greet());
+DocmentWrite(g.inner.method());
 
-console.log("--文字列からデシリアライズ--");
+DocmentWrite("--文字列からデシリアライズ--");
 let jsonString2 = '{"inner":{"field":"Hai!"},"greeting":"bbb"}';
-console.log(jsonString2);
+DocmentWrite(jsonString2);
 let g2 = c.deserialize(jsonString2, new Greeter(''));
 console.log(g2);
-console.log(g2.greet());
-console.log(g2.inner.method());
+DocmentWrite(g2.greet());
+DocmentWrite(g2.inner.method());
+
+function DocmentWrite(target: string): void {
+  // console出力
+  console.log(target);
+
+  // ドキュメント出力
+  let div = document.createElement("div");
+  div.textContent = target;
+  document.body.appendChild(div);
+}

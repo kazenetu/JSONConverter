@@ -1,3 +1,8 @@
+/**
+ * Simple JSONConverter for TypeScript
+ * Copyright 2019, kazenetu
+ * Released under the MIT License.
+ */
 export class JSONConverter {
     serialize(target) {
         return JSON.stringify(target);
